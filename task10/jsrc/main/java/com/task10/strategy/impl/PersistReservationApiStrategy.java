@@ -26,6 +26,11 @@ public class PersistReservationApiStrategy implements ApiStrategy
 
         try
         {
+            if (dbClient.getAllTables().getTables().stream().noneMatch(table -> table.getNumber() == reservationsRequest.getTableNumber()))
+            {
+                throw new RuntimeException();
+            }
+
             apiGatewayProxyResponseEvent
                     .withBody(gson.toJson(dbClient.createReservation(reservationsRequest)));
         }
