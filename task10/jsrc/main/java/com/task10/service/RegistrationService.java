@@ -68,7 +68,7 @@ public class RegistrationService {
     private String retrieveUserPoolId()
     {
         return cognitoClient.listUserPools(ListUserPoolsRequest.builder().build())
-                .userPools().stream().findFirst().get().id();
+                .userPools().stream().filter(x -> x.name().equals("cmtr-52e956b4-simple-booking-userpool-test")).findFirst().get().id();
     }
 
     private String retrieveUserPoolClientsId(final String userPoolId)
