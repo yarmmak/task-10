@@ -73,6 +73,7 @@ public class DynamoDbClient {
 
         if (result.getCount() > 0)
         {
+            System.out.println("Reservation already exists in Database!");
             throw new RuntimeException("Reservation already exists in Database!");
         }
 
@@ -99,6 +100,9 @@ public class DynamoDbClient {
 
     private Map<String, Condition> parseConditions(final ReservationsRequest reservationsRequest)
     {
+        Condition tableNumberCondition = new Condition()
+                .withComparisonOperator(ComparisonOperator.EQ.toString())
+                .withAttributeValueList(new AttributeValue().withN(Integer.toString(reservationsRequest.getTableNumber())));
         Condition clientNameCondition = new Condition()
                 .withComparisonOperator(ComparisonOperator.EQ.toString())
                 .withAttributeValueList(new AttributeValue().withS(reservationsRequest.getClientName()));
@@ -116,6 +120,7 @@ public class DynamoDbClient {
                 .withAttributeValueList(new AttributeValue().withS(reservationsRequest.getSlotTimeEnd()));
 
         Map<String, Condition> conditions = new HashMap<>();
+        conditions.put("tableNumber", tableNumberCondition);
         conditions.put("clientName", clientNameCondition);
         conditions.put("phoneNumber", phoneNumberCondition);
         conditions.put("date", dateCondition);
