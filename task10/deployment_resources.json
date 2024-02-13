@@ -144,13 +144,13 @@
       },
       "/tables": {
         "GET": {
-          "authorization_type": "authorizer",
+          "authorization_type": "NONE",
           "lambda_name": "api_handler",
           "integration_type": "lambda",
           "enable_proxy": true
         },
         "POST": {
-          "authorization_type": "authorizer",
+          "authorization_type": "NONE",
           "lambda_name": "api_handler",
           "integration_type": "lambda",
           "enable_proxy": true
@@ -158,7 +158,7 @@
       },
       "/tables/{tableId}": {
         "GET": {
-          "authorization_type": "authorizer",
+          "authorization_type": "NONE",
           "lambda_name": "api_handler",
           "integration_type": "lambda",
           "enable_proxy": true
@@ -166,13 +166,13 @@
       },
       "/reservations": {
         "GET": {
-          "authorization_type": "authorizer",
+          "authorization_type": "NONE",
           "lambda_name": "api_handler",
           "integration_type": "lambda",
           "enable_proxy": true
         },
         "POST": {
-          "authorization_type": "authorizer",
+          "authorization_type": "NONE",
           "lambda_name": "api_handler",
           "integration_type": "lambda",
           "enable_proxy": true
